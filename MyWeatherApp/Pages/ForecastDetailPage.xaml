@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MyWeatherApp.Pages.ForecastDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:MyWeatherApp.Effects"
+    Title="{Binding Title}">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            FontSize="34"
+            Text="{Binding CityName}" />
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            FontSize="46"
+            Text="{Binding Temperature, StringFormat='{0:N2}°C'}">
+            <Label.Effects>
+                <effects:TextShadowEffect />
+            </Label.Effects>
+        </Label>
+        <Image
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HeightRequest="72"
+            Source="{Binding Icon, Converter={StaticResource IconConverter}}" />
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            FontSize="32"
+            Text="{Binding Main}" />
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            FontSize="28"
+            Text="{Binding MaxTemperature, Converter={StaticResource TemperatureLabelConverter}, ConverterParameter='H:'}" />
+        <Label
+            Grid.Row="4"
+            Grid.Column="1"
+            FontSize="28"
+            Text="{Binding MinTemperature, Converter={StaticResource TemperatureLabelConverter}, ConverterParameter='L:'}" />
+        <Button
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="16"
+            Command="{Binding OpenMapCommand}"
+            Text="Open Map"
+            VerticalOptions="EndAndExpand" />
+    </Grid>
+</ContentPage>

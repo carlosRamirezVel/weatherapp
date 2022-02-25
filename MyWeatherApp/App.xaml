@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="MyWeatherApp.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:MyWeatherApp.Converters">
+    <Application.Resources>
+        <!--  app colors  -->
+        <Color x:Key="PrimaryColor">#283593</Color>
+        <Color x:Key="LightColor">#5f5fc4</Color>
+        <Color x:Key="DarkColor">#001064</Color>
+        <Color x:Key="AccentColor">#AA00FF</Color>
+
+        <!--  global styles  -->
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarTextColor" Value="White" />
+            <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryColor}" />
+        </Style>
+
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+        </Style>
+
+        <!--  global converters  -->
+        <converters:IconConverter x:Key="IconConverter" />
+        <converters:DateFormatConverter x:Key="DateFormatConverter" />
+        <converters:TemperatureLabelConverter x:Key="TemperatureLabelConverter" />
+    </Application.Resources>
+</Application>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="MyWeatherApp.Pages.ForecastPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviours="clr-namespace:MyWeatherApp.Behaviours"
+    xmlns:controls="clr-namespace:MyWeatherApp.Controls"
+    xmlns:renderers="clr-namespace:MyWeatherApp.CustomRenderers"
+    Title="{Binding Title}">
+    <StackLayout Spacing="0">
+        <SearchBar
+            x:Name="searchbar"
+            Placeholder="Enter sunny, rain, etc"
+            SearchCommand="{Binding SearchCommand}"
+            Text="{Binding SearchText}">
+            <!--
+            <SearchBar.Behaviors>
+                <behaviours:TextChangedToCommandBehaviour TextChangedCommand="{Binding SearchTextCommand}" />
+            </SearchBar.Behaviors>
+            -->
+        </SearchBar>
+        <renderers:CustomSegmentControl ItemSelectedCommand="{Binding OrderByDateCommand}" Items="{Binding SegmentItems}" />
+        <CollectionView
+            Margin="8"
+            ItemsSource="{Binding Items}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectionChangedCommand="{Binding SelectedItemCommand}"
+            SelectionMode="Single">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    HorizontalItemSpacing="8"
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="8" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame HasShadow="False">
+                        <controls:WeatherItemView BackgroundColor="White" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="No data found"
+                    VerticalTextAlignment="Center" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
